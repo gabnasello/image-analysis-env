@@ -1,5 +1,8 @@
 FROM quay.io/jupyter/base-notebook:2026-07-28
 
+ENV DOCKER_IMAGE_NAME='gnasello/image-analysis-env'
+ENV VERSION='2026-08-19.1' 
+
 USER root
 
 RUN apt-get -y -qq update \
@@ -14,6 +17,11 @@ RUN apt-get -y -qq update \
         xorg \
         xubuntu-icon-theme \
         fonts-dejavu \
+        # QT6.5+ dependency (for napari)
+        libxcb-cursor0 \ 
+        # for Fiji
+        unzip \ 
+        git \
     # Disable the automatic screenlock since the account password is unknown
  && apt-get -y -qq remove xfce4-screensaver \
     # chown $HOME to workaround that the xorg installation creates a
@@ -58,3 +66,15 @@ COPY --chown=$NB_UID:$NB_GID . /opt/install
 RUN . /opt/conda/bin/activate && \
     mamba install -y -q "nodejs>=24" && \
     pip install /opt/install
+
+# Install Fiji
+RUN wget https://mirrors.pasteur.fr/fiji/downloads/stable/fiji-stable-linux64-jdk.zip && \
+    unzip fiji-*.zip && \
+    rm fiji-*.zip
+
+# Add README file
+# ADD README.ipynb /home/jovyan/
+COPY --chown=jovyan:users README.ipynb /home/jovyan/
+
+ENV JAVA_HOME=/opt/conda
+ENV PATH=$JAVA_HOME/bin:$PATH

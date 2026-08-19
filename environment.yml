@@ -4,3 +4,8 @@ dependencies:
   - jupyter-server-proxy>=4.3.0
   - jupyterhub-singleuser
   - pip
+  - napari
+  - pyside6      # This installs the stable, official Qt6 framework
+  - openjdk=11 
+  - maven 
+  - pyimagej
