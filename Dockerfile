@@ -1,7 +1,7 @@
 FROM quay.io/jupyter/base-notebook:2026-07-28
 
 ENV DOCKER_IMAGE_NAME='gnasello/image-analysis-env'
-ENV VERSION='2026-08-19.1' 
+ENV VERSION='2026-08-19.2' 
 
 USER root
 
@@ -76,5 +76,7 @@ RUN wget https://mirrors.pasteur.fr/fiji/downloads/stable/fiji-stable-linux64-jd
 # ADD README.ipynb /home/jovyan/
 COPY --chown=jovyan:users README.ipynb /home/jovyan/
 
-ENV JAVA_HOME=/opt/conda
-ENV PATH=$JAVA_HOME/bin:$PATH
+# Pre-warm the cjdk-managed JVM cache so imagej.init() doesn't
+# download anything the first time a user runs it
+RUN . /opt/conda/bin/activate && \
+    python -c "import imagej; imagej.init('/home/jovyan/Fiji.app', mode='headless')"
