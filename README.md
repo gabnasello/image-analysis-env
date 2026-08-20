@@ -1,6 +1,6 @@
 # Docker Image for Image Analsysis
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/gabnasello/iamge-analysis-env/HEAD)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/gabnasello/image-analysis-env/HEAD)
 
 # Build the docker images
 
