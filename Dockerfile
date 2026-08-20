@@ -1,7 +1,7 @@
 FROM quay.io/jupyter/base-notebook:2026-07-28
 
 ENV DOCKER_IMAGE_NAME='gnasello/image-analysis-env'
-ENV VERSION='2026-08-19.2' 
+ENV VERSION='2026-08-20' 
 
 USER root
 

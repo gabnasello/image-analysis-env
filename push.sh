@@ -3,7 +3,7 @@
 # chmod +x ./push.sh
 DOCKERHUB_USER="gnasello"
 CONTAINER_NAME="image-analysis-env"
-VERSION="2026-08-19.2"
+VERSION="2026-08-20"
 
 # Load the image
 docker push "${DOCKERHUB_USER}/${CONTAINER_NAME}:${VERSION}"

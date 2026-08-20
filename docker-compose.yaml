@@ -1,6 +1,6 @@
 services:
   datascience:
-    image: gnasello/image-analysis-env:2026-08-19.2
+    image: gnasello/image-analysis-env:2026-08-20
     container_name: image-analysis-env
     user: root
     ports:

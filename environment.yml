@@ -9,3 +9,7 @@ dependencies:
   - openjdk=11 
   - maven 
   - pyimagej
+  - bioio
+  - pip
+  - pip:
+      - bioio-ome-tiff
